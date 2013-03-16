@@ -1,0 +1,9 @@
+<project name="cobraui" url="http://github.com/cobrajs/cobraui" license="MIT">
+    <user name="cobrajs"/>
+    <tag v="ui"/>
+    <tag v="nme"/>
+    <tag v="cross"/>
+    <description>A simple UI library</description>
+    <version name="1.0">Initial release</version>
+    <depends name="nme" />
+</project>
