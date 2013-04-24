@@ -53,7 +53,9 @@ class Popup extends Sprite {
     addChild(overlay);
 
     window = new Component();
-    window.loadFromThemeFactory("window");
+    if (Component.themeFactory != null) {
+      window.loadFromThemeFactory("window");
+    }
     addChild(window);
 
     this.visible = false;

@@ -121,6 +121,9 @@ class BorderLayout extends Layout {
       if (key != CUSTOM) {
         slot.occupant.x = x + paddingX;
         slot.occupant.y = y + paddingY;
+        if (slot.customFunc != null) {
+          slot.customFunc();
+        }
       } else {
         if (slot.customFunc != null) {
           slot.customFunc();

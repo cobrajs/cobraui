@@ -4,6 +4,6 @@
     <tag v="nme"/>
     <tag v="cross"/>
     <description>A simple UI library</description>
-    <version name="1.0">Initial release</version>
+    <version name="1.02">Added change event to selector</version>
     <depends name="nme" />
 </project>

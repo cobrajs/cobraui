@@ -3,6 +3,7 @@ package cobraui.components;
 import cobraui.components.Label;
 
 import nme.events.MouseEvent;
+import nme.events.Event;
 
 class Selector<T> extends Label<T> {
   public var options(default, setOptions):Array<T>;
@@ -20,6 +21,7 @@ class Selector<T> extends Label<T> {
 
   private function mouseDown(event:MouseEvent) {
     selectedIndex++;
+    dispatchEvent(new Event(Event.CHANGE));
   }
 
   private function setOptions(o:Array<T>):Array<T> {
