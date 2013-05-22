@@ -4,6 +4,6 @@
     <tag v="nme"/>
     <tag v="cross"/>
     <description>A simple UI library</description>
-    <version name="1.02">Added change event to selector</version>
+    <version name="1.05">Fix for slider not getting set right</version>
     <depends name="nme" />
 </project>

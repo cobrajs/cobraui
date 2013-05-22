@@ -95,6 +95,7 @@ class ScrollBox extends Sprite {
 
         if (checkTolerance) {
           scrollIndicator.visible = true;
+          dispatchEvent(new Event(Event.SCROLL));
         }
         checkTolerance = false;
       }

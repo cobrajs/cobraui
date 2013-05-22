@@ -9,11 +9,12 @@ import cobraui.layouts.BorderLayout;
 import nme.events.Event;
 import nme.events.MouseEvent;
 import nme.events.TouchEvent;
+import nme.geom.Point;
 import nme.geom.Rectangle;
 import nme.ui.Multitouch;
 
 class Slider extends Container {
-  public var value(default, setValue):Int;
+  private var value:Int;
   private var oldValue:Int;
 
   public var minimum:Int;
@@ -23,6 +24,9 @@ class Slider extends Container {
   private var slider:Component;
   private var dragging:Bool;
   private var sliderBackground:Component;
+
+  private var startDragPos:Point;
+  private var sliderStartX:Float;
 
   private var valueLabel:Label<String>;
 
@@ -35,45 +39,70 @@ class Slider extends Container {
 
     layout = new BorderLayout(10, 10);
 
+    startDragPos = new Point(0, 0);
+
     sliderBackground = new Component();
     sliderBackground.borderWidth = 2;
     sliderBackground.background = new Color(0xCCCCCC);
     addChild(sliderBackground);
-    layout.assignComponent(sliderBackground, BorderLayout.RIGHT, 0.7, 1, percent);
+    var sliderBackgroundPercent:Float = 0.7;
+    layout.assignComponent(sliderBackground, BorderLayout.RIGHT, sliderBackgroundPercent, 1, percent);
 
     slider = new Component();
     slider.borderWidth = 2;
     sliderBackground.addChild(slider);
     layout.assignComponent(slider, BorderLayout.CUSTOM, 0.2, 1, percent, function() {
-      slider.x = (value / (maximum - minimum)) * (sliderBackground.uWidth - slider.uWidth);
+      slider.x = ((value - minimum) * ((this.uWidth * sliderBackgroundPercent) - slider.uWidth)) / (maximum - minimum);
     });
+    slider.mouseEnabled = false;
 
     dragging = false;
 
-    slider.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent) {
-      slider.startDrag(false, new Rectangle(0, 0, sliderBackground.uWidth - slider.uWidth, 0));
+    sliderBackground.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent) {
+      startDragPos.x = e.stageX;
+      startDragPos.y = e.stageY;
+
+      sliderStartX = slider.x;
+
       dragging = true;
     });
 
-    slider.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent) {
+    sliderBackground.addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent) {
       if (dragging) {
-        var tempValue = Std.int((slider.x / (sliderBackground.uWidth - slider.uWidth)) * (maximum - minimum) + minimum);
-        tempValue = tempValue - tempValue % step;
+        var newPos = sliderStartX + (e.stageX - startDragPos.x);
+
+        if (newPos <= 0) {
+          newPos = 0;
+        }
+        if (newPos >= sliderBackground.uWidth - slider.uWidth) {
+          newPos = sliderBackground.uWidth - slider.uWidth;
+        }
+
+        var stepWidth = ((sliderBackground.uWidth - slider.uWidth) / ((maximum - minimum) / step));
+
+        newPos = Std.int(newPos / stepWidth) * stepWidth;
+
+        slider.x = newPos;
+
+        var tempValue = minimum + Std.int(slider.x / stepWidth);
         if (tempValue != oldValue) {
           value = tempValue;
           oldValue = value;
+          updateLabel(value);
           dispatchEvent(new Event(Event.CHANGE));
         }
       }
     });
 
     var stopDragging = function(e:MouseEvent) {
-      slider.stopDrag();
+      startDragPos.x = 0;
+      startDragPos.y = 0;
+
       dragging = false;
     };
 
-    slider.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
-    slider.addEventListener(MouseEvent.MOUSE_OUT, stopDragging);
+    sliderBackground.addEventListener(MouseEvent.MOUSE_UP, stopDragging);
+    sliderBackground.addEventListener(MouseEvent.MOUSE_OUT, stopDragging);
 
     if (Multitouch.supportsTouchEvents) {
       slider.addEventListener(TouchEvent.TOUCH_OUT, stopDragging);
@@ -86,15 +115,24 @@ class Slider extends Container {
     addChild(valueLabel);
     layout.assignComponent(valueLabel, BorderLayout.LEFT, 0.3, 1, percent);
     
-    value = defaultValue == null ? Std.int((maximum - minimum) / step / 2) * step : defaultValue;
+    setValue(defaultValue == null ? Std.int((maximum - minimum) / step / 2) * step : defaultValue);
 
     layout.pack();
   }
 
+  private function updateLabel(value:Int) {
+    valueLabel.content = Std.string(value);
+  }
+
   public function setValue(value:Int):Int {
     this.value = value;
-    valueLabel.content = Std.string(value);
-    slider.x = (value / (maximum - minimum)) * (sliderBackground.uWidth - slider.uWidth);
+    updateLabel(value);
+    var stepWidth = ((sliderBackground.uWidth - slider.uWidth) / ((maximum - minimum) / step));
+    slider.x = stepWidth * (value - minimum);
+    return value;
+  }
+
+  public function getValue():Int {
     return value;
   }
 }
