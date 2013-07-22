@@ -3,10 +3,10 @@ package cobraui.components;
 import cobraui.components.Component;
 import cobraui.graphics.BitmapFont;
 
-import nme.display.Sprite;
-import nme.display.BitmapData;
-import nme.geom.Matrix;
-import nme.geom.Point;
+import flash.display.Sprite;
+import flash.display.BitmapData;
+import flash.geom.Matrix;
+import flash.geom.Point;
 
 enum HAlignment {
   left;
@@ -22,7 +22,7 @@ enum VAlignment {
 
 class Label<T> extends Component {
   public static var font:BitmapFont;
-  public var content(default, setContent):T;
+  public var content (default, set):T;
   public var hAlign:HAlignment;
   public var vAlign:VAlignment;
 
@@ -77,13 +77,13 @@ class Label<T> extends Component {
     }
   }
 
-  private function setContent(t:T):T {
+  private function set_content(t:T):T {
     content = t;
     redraw();
     return content;
   }
 
-  override private function setMargin(m:Int):Int {
+  override private function set_margin(m:Int):Int {
     margin = m;
     redraw();
     return margin;

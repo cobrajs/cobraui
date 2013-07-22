@@ -2,13 +2,13 @@ package cobraui.components;
 
 import cobraui.components.Label;
 
-import nme.events.MouseEvent;
-import nme.events.Event;
+import flash.events.MouseEvent;
+import flash.events.Event;
 
 class Selector<T> extends Label<T> {
-  public var options(default, setOptions):Array<T>;
-  public var selected(getSelected, setSelected):T;
-  public var selectedIndex(default, setSelectedIndex):Int;
+  public var options (default, set):Array<T>;
+  public var selected (get, set):T;
+  public var selectedIndex (default, set):Int;
 
   public function new(options:Array<T>, ?defaultOption:Int = 0) {
     super(options[defaultOption], 0);
@@ -24,17 +24,17 @@ class Selector<T> extends Label<T> {
     dispatchEvent(new Event(Event.CHANGE));
   }
 
-  private function setOptions(o:Array<T>):Array<T> {
+  private function set_options(o:Array<T>):Array<T> {
     options = o;
     selectedIndex = 0;
     return options;
   }
 
-  private function getSelected():T {
+  private function get_selected():T {
     return options[selectedIndex];
   }
 
-  private function setSelected(s:T):T {
+  private function set_selected(s:T):T {
     for (i in 0...options.length) {
       if (options[i] == s) {
         selectedIndex = i;
@@ -44,7 +44,7 @@ class Selector<T> extends Label<T> {
     return s;
   }
 
-  private function setSelectedIndex(i:Int):Int {
+  private function set_selectedIndex(i:Int):Int {
     selectedIndex = i;
     if (selectedIndex >= options.length) {
       selectedIndex = 0;

@@ -10,7 +10,7 @@ import cobraui.components.Container;
 import cobraui.layouts.GridLayout;
 import cobraui.layouts.BorderLayout;
 
-import nme.events.MouseEvent;
+import flash.events.MouseEvent;
 
 enum PopupType {
   alert;

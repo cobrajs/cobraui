@@ -2,17 +2,17 @@ package cobraui.util;
 
 import cobraui.util.NodeWalker;
 
-import nme.display.DisplayObject;
-import nme.display.Shape;
-import nme.display.Sprite;
-import nme.events.MouseEvent;
-import nme.geom.Point;
+import flash.display.DisplayObject;
+import flash.display.Shape;
+import flash.display.Sprite;
+import flash.events.MouseEvent;
+import flash.geom.Point;
 
 class Navigator extends Sprite {
   private var leftArrow:Shape;
   private var rightArrow:Shape;
-  public var currentNode(default, setCurrentNode):DisplayObject;
-  public var currentNodeIndex(default, null):Int;
+  public var currentNode (default, set):DisplayObject;
+  public var currentNodeIndex (default, null):Int;
   public var currentNodeList:Array<DisplayObject>;
 
   public function new(startNode:DisplayObject) {
@@ -66,7 +66,7 @@ class Navigator extends Sprite {
     rightArrow.y = currentNode.height / 2;
   }
 
-  private function setCurrentNode(node:DisplayObject):DisplayObject {
+  private function set_currentNode(node:DisplayObject):DisplayObject {
     currentNode = node;
     return node;
   }

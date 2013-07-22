@@ -7,11 +7,12 @@ import cobraui.components.Label;
 import cobraui.graphics.Color;
 import cobraui.util.NodeWalker;
 
-import nme.display.Sprite;
-import nme.display.Bitmap;
-import nme.Assets;
-import nme.events.MouseEvent;
-import nme.events.Event;
+import flash.display.Sprite;
+import flash.display.Bitmap;
+import flash.events.MouseEvent;
+import flash.events.Event;
+
+import openfl.Assets;
 
 class Popup extends Sprite {
   public static var nextId:Int = 0;

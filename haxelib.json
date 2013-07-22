@@ -1,0 +1,12 @@
+{
+  "name" : "cobraui",
+  "url"  : "http://github.com/cobrajs/cobraui",
+  "license" : "MIT",
+  "tags" : ["ui", "cross", "openfl"],
+  "description" : "A simple UI library",
+  "version" : "1.1.0",
+  "releasenotes" : "Updated to use OpenFL and Haxe 3",
+  "dependencies" : {
+    "openfl" : "1.0.2"
+  }
+}

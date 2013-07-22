@@ -2,10 +2,10 @@ package cobraui.components;
 
 import cobraui.graphics.Color;
 
-import nme.display.Shape;
-import nme.events.MouseEvent;
-import nme.events.TouchEvent;
-import nme.ui.Multitouch;
+import flash.display.Shape;
+import flash.events.MouseEvent;
+import flash.events.TouchEvent;
+import flash.ui.Multitouch;
 
 enum ButtonState {
   normal;
@@ -14,9 +14,9 @@ enum ButtonState {
 
 class SimpleButton<T> extends Label<T> {
   public static var defaultClickBackground:Int = 0x777777;
-  public var state(default, setState):ButtonState;
+  public var state (default, set):ButtonState;
   public var stickyState:Bool;
-  public var flagged(default, setFlagged):Bool;
+  public var flagged (default, set):Bool;
   private var originalBackround:Color;
   private var flag:Shape;
   private var dirtyFlag:Bool;
@@ -92,7 +92,7 @@ class SimpleButton<T> extends Label<T> {
     dirtyFlag = false;
   }
 
-  private function setState(newState:ButtonState):ButtonState {
+  private function set_state(newState:ButtonState):ButtonState {
     if (state != newState) {
       if (state == normal && newState == clicked) {
         originalBackround = background;
@@ -110,7 +110,7 @@ class SimpleButton<T> extends Label<T> {
     return newState;
   }
 
-  private function setFlagged(flagged:Bool):Bool {
+  private function set_flagged(flagged:Bool):Bool {
     this.flagged = flagged;
     if (flagged) {
       if (dirtyFlag) {

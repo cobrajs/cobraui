@@ -3,9 +3,9 @@ package cobraui.components;
 import cobraui.components.Label;
 import cobraui.graphics.Color;
 
-import nme.events.Event;
-import nme.events.KeyboardEvent;
-import nme.ui.Keyboard;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
+import flash.ui.Keyboard;
 
 class TextInput extends Label<String> {
   public var active:Bool;

@@ -1,37 +1,24 @@
 package cobraui.graphics;
 
-import nme.display.BitmapInt32;
-import nme.display.BitmapData;
-import nme.geom.ColorTransform;
+import flash.display.BitmapData;
+import flash.geom.ColorTransform;
 
 class Color {
-#if neko
-  public static var transparent:BitmapInt32 = {rgb: 0x000000, a: 0x00};
-#else
-  public static var transparent:BitmapInt32 = 0x00000000;
-#end
+  public static var transparent:Int = 0x00000000;
   
   public var colorInt:Int;
   public var alpha:Int;
-  public var colorARGB(getARGBcolor, setARGBcolor):BitmapInt32;
-  public var r(getR, setR):Int;
-  public var g(getG, setG):Int;
-  public var b(getB, setB):Int;
+  public var colorARGB (get, set):Int;
+  public var r (get, set):Int;
+  public var g (get, set):Int;
+  public var b (get, set):Int;
 
-  public static function getARGB(color:Int, alpha:Int):BitmapInt32 {
-#if neko
-    return {rgb: color, a:alpha};
-#else
+  public static function getARGB(color:Int, alpha:Int):Int {
     return (alpha << 24) | color;
-#end
   }
   
-  public static function getAlpha(color:BitmapInt32):Int {
-#if neko
-    return color.a;
-#else
+  public static function getAlpha(color:Int):Int {
     return color >> 24;
-#end
   }
 
   public static function generateTransform(color:Int) {
@@ -104,46 +91,40 @@ class Color {
   // Property getter/setters
   // 
   
-  private function getARGBcolor():BitmapInt32 {
+  private function get_colorARGB():Int {
     return Color.getARGB(this.colorInt, this.alpha);
   }
 
-  private function setARGBcolor(color:BitmapInt32):BitmapInt32 {
-#if neko
-    // BitmapInt32: {rgb: rgb, a: a}
-    this.colorInt = color.rgb;
-    this.alpha = color.a;
-#else
-    // BitmapInt: 0xAARRGGBB
+  private function set_colorARGB(color:Int):Int {
+    // Int: 0xAARRGGBB
     this.alpha = color >> 24;
     this.colorInt = color & (0xFFFFFF);
-#end
     return color;
   }
 
   // Individual Color Components
-  private function getR():Int {
+  private function get_r():Int {
     return (colorInt & (0xFF0000)) >> 16;
   }
-  private function setR(color:Int):Int {
+  private function set_r(color:Int):Int {
     colorInt &= 0x00FFFF;
     colorInt |= color << 16;
     return color;
   }
 
-  private function getG():Int {
+  private function get_g():Int {
     return (colorInt & (0xFF00)) >> 8;
   }
-  private function setG(color:Int):Int {
+  private function set_g(color:Int):Int {
     colorInt &= 0xFF00FF;
     colorInt |= color << 8;
     return color;
   }
 
-  private function getB():Int {
+  private function get_b():Int {
     return (colorInt & (0xFF));
   }
-  private function setB(color:Int):Int {
+  private function set_b(color:Int):Int {
     colorInt &= 0xFFFF00;
     colorInt |= color;
     return color;

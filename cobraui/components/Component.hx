@@ -3,9 +3,9 @@ package cobraui.components;
 import cobraui.graphics.Color;
 import cobraui.util.ThemeFactory;
 
-import nme.display.Sprite;
-import nme.events.Event;
-import nme.display.Graphics;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.display.Graphics;
 
 class Component extends Sprite {
   public static var themeFactory:ThemeFactory;
@@ -15,9 +15,9 @@ class Component extends Sprite {
   public static var defaultBorder:Int = 0x777777;
   public static var defaultBorderWidth:Int = 0;
 
-  public var uWidth(default, null):Float;
-  public var uHeight(default, null):Float;
-  public var margin(default, setMargin):Int;
+  public var uWidth (default, null):Float;
+  public var uHeight (default, null):Float;
+  public var margin (default, set):Int;
   public var background:Color;
   public var foreground:Color;
   public var border:Color;
@@ -125,7 +125,7 @@ class Component extends Sprite {
     }
   }
 
-  private function setMargin(margin:Int):Int {
+  private function set_margin(margin:Int):Int {
     this.margin = margin;
     redraw();
     return margin;

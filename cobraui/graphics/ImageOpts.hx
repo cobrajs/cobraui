@@ -2,7 +2,7 @@ package cobraui.graphics;
 
 import cobraui.graphics.Color;
 
-import nme.display.BitmapData;
+import flash.display.BitmapData;
 
 class ImageOpts {
   public static function keyBitmapData(imageData:BitmapData, ?colorKey:Int = 0xFF00FF) {

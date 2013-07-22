@@ -6,12 +6,12 @@ import cobraui.components.SimpleButton;
 import cobraui.components.Label;
 import cobraui.layouts.BorderLayout;
 
-import nme.events.Event;
-import nme.events.MouseEvent;
-import nme.events.TouchEvent;
-import nme.geom.Point;
-import nme.geom.Rectangle;
-import nme.ui.Multitouch;
+import flash.events.Event;
+import flash.events.MouseEvent;
+import flash.events.TouchEvent;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.ui.Multitouch;
 
 class Slider extends Container {
   private var value:Int;

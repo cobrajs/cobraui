@@ -1,17 +1,17 @@
 package cobraui.util;
 
-import nme.events.Event;
-import nme.events.TouchEvent;
-import nme.ui.Multitouch;
-import nme.geom.Point;
+import flash.events.Event;
+import flash.events.TouchEvent;
+import flash.ui.Multitouch;
+import flash.geom.Point;
 
 class TouchManager {
   // Touch Gesture stuff
   public var threshold:Int;
   public var originPoint:Point;
 
-  public var originPoints:IntHash<Point>;
-  public var touchPoints:IntHash<Point>;
+  public var originPoints:Map<Int,Point>;
+  public var touchPoints:Map<Int,Point>;
   public var touchCount:Int;
   public var lastPointID:Int;
 
@@ -25,8 +25,8 @@ class TouchManager {
   }
 
   public function new() {
-    originPoints = new IntHash<Point>();
-    touchPoints = new IntHash<Point>();
+    originPoints = new Map<Int,Point>();
+    touchPoints = new Map<Int,Point>();
     touchCount = 0;
     wasZooming = false;
   }

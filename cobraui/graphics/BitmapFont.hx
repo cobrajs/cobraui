@@ -2,13 +2,13 @@ package cobraui.graphics;
 
 import cobraui.graphics.Tilesheet;
 
-import nme.display.BitmapData;
-import nme.display.Graphics;
-import nme.geom.Matrix;
-import nme.geom.ColorTransform;
-import nme.display.Shape;
+import flash.display.BitmapData;
+import flash.display.Graphics;
+import flash.geom.Matrix;
+import flash.geom.ColorTransform;
+import flash.display.Shape;
 
-import nme.Assets;
+import openfl.Assets;
 
 class BitmapFont {
   public var data:Tilesheet;

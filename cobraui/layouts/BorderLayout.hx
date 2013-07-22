@@ -47,12 +47,12 @@ class BorderLayout extends Layout {
   public static var IS_MIDDLE_HORIZONTAL:Int = 16;
   public static var IS_MIDDLE_VERTICAL:Int = 2;
 
-  public var slots:IntHash<Slot>;
+  public var slots:Map<Int,Slot>;
 
   public function new(width:Float, height:Float) {
     super(width, height);
 
-    slots = new IntHash<Slot>();
+    slots = new Map<Int,Slot>();
   }
 
   override public function addComponent(component:Component) {

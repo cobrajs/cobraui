@@ -9,7 +9,7 @@ import cobraui.components.Component;
 import cobraui.layouts.GridLayout;
 import cobraui.layouts.BorderLayout;
 
-import nme.events.MouseEvent;
+import flash.events.MouseEvent;
 
 class MenuPopup extends Popup {
   public static var TYPE:String = "menupopup";

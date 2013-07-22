@@ -1,6 +1,6 @@
 package cobraui.popup;
 
-import nme.events.Event;
+import flash.events.Event;
 
 class PopupEvent extends Event {
   public static var MESSAGE:String = "PopupMessageEvent";

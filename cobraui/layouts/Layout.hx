@@ -8,9 +8,9 @@ enum SizeType {
 }
 
 class Layout {
-  public var width(default, null):Float;
-  public var height(default, null):Float;
-  public var components(default, null):Array<Component>;
+  public var width (default, null):Float;
+  public var height (default, null):Float;
+  public var components (default, null):Array<Component>;
   public var packed:Bool;
 
   public var paddingX:Float;

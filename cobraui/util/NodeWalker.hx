@@ -2,9 +2,9 @@ package cobraui.util;
 
 // TODO: Add next/prev, directional finding, limiting finding by active popup
 
-import nme.display.DisplayObject;
-import nme.display.DisplayObjectContainer;
-import nme.display.Sprite;
+import flash.display.DisplayObject;
+import flash.display.DisplayObjectContainer;
+import flash.display.Sprite;
 
 class NodeWalker {
   public static function getChildren(node:DisplayObjectContainer):Array<DisplayObject> {

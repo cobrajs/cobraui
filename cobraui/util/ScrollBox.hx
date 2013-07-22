@@ -2,13 +2,13 @@ package cobraui.util;
 
 // TODO: Convert to Component to allow use with BorderLayout
 
-import nme.display.DisplayObject;
-import nme.display.Sprite;
-import nme.display.Shape;
-import nme.geom.Rectangle;
-import nme.geom.Point;
-import nme.events.Event;
-import nme.events.MouseEvent;
+import flash.display.DisplayObject;
+import flash.display.Sprite;
+import flash.display.Shape;
+import flash.geom.Rectangle;
+import flash.geom.Point;
+import flash.events.Event;
+import flash.events.MouseEvent;
 
 class ScrollBox extends Sprite {
   private static var SCROLLWIDTH:Int = 20;

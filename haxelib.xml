@@ -1,9 +1,0 @@
-<project name="cobraui" url="http://github.com/cobrajs/cobraui" license="MIT">
-    <user name="cobrajs"/>
-    <tag v="ui"/>
-    <tag v="nme"/>
-    <tag v="cross"/>
-    <description>A simple UI library</description>
-    <version name="1.05">Fix for slider not getting set right</version>
-    <depends name="nme" />
-</project>

@@ -11,7 +11,7 @@ import cobraui.components.TextInput;
 import cobraui.layouts.GridLayout;
 import cobraui.layouts.BorderLayout;
 
-import nme.events.MouseEvent;
+import flash.events.MouseEvent;
 
 class PromptPopup extends Popup {
   public static var TYPE:String = "promptpopup";

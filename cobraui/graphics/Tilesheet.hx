@@ -2,19 +2,19 @@ package cobraui.graphics;
 
 import cobraui.graphics.ImageOpts;
 
-import nme.display.BitmapData;
-import nme.display.Graphics;
-import nme.geom.Matrix;
-import nme.geom.Point;
-import nme.geom.Rectangle;
+import flash.display.BitmapData;
+import flash.display.Graphics;
+import flash.geom.Matrix;
+import flash.geom.Point;
+import flash.geom.Rectangle;
 
 class Tilesheet {
   private var data:BitmapData;
-  public var rects(default, null):Array<Rectangle>;
-  public var tilesX(default, null):Int;
-  public var tilesY(default, null):Int;
-  public var tileWidth(default, null):Float;
-  public var tileHeight(default, null):Float;
+  public var rects (default, null):Array<Rectangle>;
+  public var tilesX (default, null):Int;
+  public var tilesY (default, null):Int;
+  public var tileWidth (default, null):Float;
+  public var tileHeight (default, null):Float;
 
   public function new(imageData:BitmapData, ?tilesX:Int = 0, ?tilesY:Int = 0) {
     this.tilesX = tilesX;
