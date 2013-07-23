@@ -1,6 +1,6 @@
 package cobraui.util;
 
-// TODO: Convert to Component to allow use with BorderLayout
+import cobraui.components.Component;
 
 import flash.display.DisplayObject;
 import flash.display.Sprite;
@@ -10,7 +10,7 @@ import flash.geom.Point;
 import flash.events.Event;
 import flash.events.MouseEvent;
 
-class ScrollBox extends Sprite {
+class ScrollBox extends Component {
   private static var SCROLLWIDTH:Int = 20;
   public var scrollBox:Sprite;
   private var scrollBoxRect:Rectangle;
@@ -37,14 +37,7 @@ class ScrollBox extends Sprite {
     this.checkTolerance  = true;
 
     scrollIndicator = new Shape();
-    var scrollHeight = height * 0.2;
-    var gfx = scrollIndicator.graphics;
-    gfx.beginFill(0xDDDDDD);
-    gfx.drawRect(0, 0, SCROLLWIDTH, scrollHeight / 2);
-    gfx.endFill();
-    gfx.beginFill(0x888888);
-    gfx.drawRect(0, scrollHeight / 2, SCROLLWIDTH, scrollHeight / 2);
-    gfx.endFill();
+    redrawIndicator();
     scrollIndicator.x = width - SCROLLWIDTH;
     scrollIndicator.y = 0;
     scrollIndicator.visible = false;
@@ -58,6 +51,17 @@ class ScrollBox extends Sprite {
     addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 
     addEventListener(Event.ADDED_TO_STAGE, addedToStage);
+  }
+
+  private function redrawIndicator() {
+    var scrollHeight = scrollBoxRect.height * 0.2;
+    var gfx = scrollIndicator.graphics;
+    gfx.beginFill(0xDDDDDD);
+    gfx.drawRect(0, 0, SCROLLWIDTH, scrollHeight / 2);
+    gfx.endFill();
+    gfx.beginFill(0x888888);
+    gfx.drawRect(0, scrollHeight / 2, SCROLLWIDTH, scrollHeight / 2);
+    gfx.endFill();
   }
 
   public function scrollTop() {
@@ -110,9 +114,10 @@ class ScrollBox extends Sprite {
     scrollIndicator.visible = false;
   }
 
-  public function resize(width:Float, height:Float) {
+  public function resizeBox(width:Float, height:Float) {
     scrollBoxRect.width = width;
     scrollBoxRect.height = height;
+    redrawIndicator();
     scrollIndicator.x = width - SCROLLWIDTH;
     refreshScrollRect();
   }

@@ -37,7 +37,7 @@ class Component extends Sprite {
     margin = 0;
 
     isClickable = false;
-
+    
     // Set a default since it can't be null
     borderWidth = -1;
 
