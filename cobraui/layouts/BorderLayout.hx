@@ -79,25 +79,57 @@ class BorderLayout extends Layout {
     slots.set(position, tempSlot);
   }
   
-  // TODO: Fix this to be able to move a component to a new position
-  public function updateComponent(component:Component, position:Int, width:Float, height:Float, type:SizeType, ?customFunc:Void->Void) {
+  public function updateComponent(component:Component, position:Int, width:Float, height:Float, type:SizeType) {
+
+    // Check that componeent is a component in this layout
+    var good = false;
+    for (c in components) {
+      if (c == component) {
+        good = true;
+      }
+    }
+
+    if (!good) {
+      return;
+    }
+
+    // Check that there is an old position for the component
+    var oldPosition:Int = -1;
+    for (pos in slots.keys()) {
+      if (slots.get(pos).occupant == component) {
+        oldPosition = pos;
+        break;
+      }
+    }
+
+    if (oldPosition == -1 || oldPosition == position) {
+      return;
+    }
+
+    var currentOccupant:Slot = null;
     if (slots.exists(position)) {
-      //throw "Component already exists in this position";
+      // Swap positions
+      currentOccupant = slots.get(position);
       slots.remove(position);
     }
 
-    var tempSlot:Slot = {
-      width: width,
-      height: height,
-      position: position,
-      occupant: component,
-      type: type,
-      customFunc: customFunc
-    };
+    var currentSlot:Slot = slots.get(oldPosition);
+    slots.remove(oldPosition);
 
-    super.addComponent(component);
+    currentSlot.width = width;
+    currentSlot.height = height;
+    currentSlot.position = position;
+    currentSlot.type = type;
 
-    slots.set(position, tempSlot);
+    slots.set(position, currentSlot);
+
+    if (currentOccupant != null) {
+      slots.set(oldPosition, currentOccupant);
+    }
+
+    if (packed) {
+      pack();
+    }
   }
 
   override public function pack() {

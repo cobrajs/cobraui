@@ -8,10 +8,12 @@ import cobraui.layouts.BorderLayout;
 
 class LabeledComponent extends Container {
   public var component:Component;
-  public var label:Label;
+  public var label:Label<String>;
   public var labelText:String;
 
   public function new(labelText:String, component:Component, ?labelPercent:Float = 0.3) {
+    super();
+
     layout = new BorderLayout(10, 10);
 
     this.labelText = labelText;

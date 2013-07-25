@@ -147,5 +147,11 @@ class SimpleButton<T> extends Label<T> {
     }
   }
 
+  public function clickButton() {
+    dispatchEvent(new MouseEvent(MouseEvent.MOUSE_DOWN, true, false, width / 2, height / 2));
+    dispatchEvent(new MouseEvent(MouseEvent.MOUSE_UP, true, false, width / 2, height / 2));
+  }
+
+
 }
 
