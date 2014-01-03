@@ -121,4 +121,10 @@ class ScrollBox extends Component {
     scrollIndicator.x = width - SCROLLWIDTH;
     refreshScrollRect();
   }
+
+  override public function resize(width:Float, height:Float) {
+    resizeBox(width, height);
+
+    super.resize(width, height);
+  }
 }
